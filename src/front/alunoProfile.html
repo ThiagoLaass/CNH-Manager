@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="img/logo12nobg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/selecionarInstrutor.css">
+    <link rel="stylesheet" href="css/horarios.css">
+    <link rel="stylesheet" href="css/avaliacao.css">
+    <link rel="stylesheet" href="css/progressoAluno.css">
+    <title>Profile - CNH Manager</title>
+</head>
+<body>
+    <header class="header text-center">
+        <div class="container">
+            <img src="img/logo12nobg.png" alt="CNH Manager" width="100">
+            <h1 id="pagina" class="">Perfil De Aluno</h1>
+            <button type="button" class="btn btn-dark" id="logoutBtn">Log out</button>
+        </div>
+        <div id="user-info" class=""></div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Solicitação de presença</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#requerimentoModal" id="solicitarPresencaBtn">
+                                Solicitar Presença
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Solicitação de prova</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#requerimentoProvaModal" id="solicitarProvaBtn">
+                                Solicitar Prova
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Ver Solicitações de Presença</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                onclick="fetchSolicitacoesOfUser()" data-bs-target="#solicitacoesModal">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Ver Solicitações de Prova</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                onclick="fetchSolicitaProvaOfUser()" data-bs-target="#solicitacoesProvaModal">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Selecionar Professor de Aula Prática</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#selectInstructorModal" id="solicitarAulaPraticaBtn">
+                                Selecionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Meus Horários de Aula</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#myHorariosModal" id="myHorariosBtn">
+                                Visualizar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Solicitar Aulas Adicionais</h5>
+                            <button type="button" class="btn btn-primary" id="solicitarAulasAdicionaisBtn"
+                                data-bs-toggle="modal" data-bs-target="#selectInstructorModal">
+                                Solicitar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Horários Aguardando Aprovação do Instrutor</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#aguardandoAprovacao" id="aguardandoAprovacaoBtn">
+                                Visualizar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Ver Pagamentos</h5>
+                            <button type="button" class="btn btn-primary" id="verPagamentosBtn" data-bs-toggle="modal"
+                                data-bs-target="#verPagamentosModal" onclick="showPagamentosOfUser()">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Minhas Provas</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#provasModal">
+                                Ver
+                              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container progresso table-responsive">
+            <table id="tabela-progresso">
+                <thead>
+                  <tr>
+                    <th>Aula</th>
+                    <th>Seu progresso</th>
+                    <th>Percentual</th>
+                  </tr>
+                </thead>
+                <tbody id="tabela-progresso-body">
+                  <!-- O progresso aparecerá aqui -->
+                </tbody>
+              </table>
+              <div class="container" id="avaliar-autoescola-btn-container" style="display: none;"></div>
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CNH Manager. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="requerimentoModal" tabindex="-1" aria-labelledby="requerimentoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="requerimentoModalLabel">Solicitar presença</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="presencaForm">
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição:</label>
+                            <input type="text" class="form-control" id="descricao" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="horas" class="form-label">Quantidade de horas que deseja solicitar:</label>
+                            <input type="number" class="form-control" id="horas" name="horas" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo-aula" class="form-label">Tipo de aula:</label>
+                            <select id="tipoAula" class="form-control" required>
+                            <option value="teorica">Teórica</option>
+                            </select>
+
+                            <div id="opcoesTeorica" class="mt-3">
+                                <label for="especificacao" class="form-label">Especifique a aula teórica:</label>
+                                <select id="aulaTeorica" class="form-control" required>
+                                    <option value="legislacao">Legislação</option>
+                                    <option value="direcao-defensiva">Direção Defensiva</option>
+                                    <option value="primeiros-socorros">Primeiros Socorros</option>
+                                    <option value="meio-ambiente">Meio Ambiente</option>
+                                    <option value="mecanica">Mecânica</option>
+                                 </select>
+                            </div>
+                        </div>
+                       
+                        <button type="button" class="btn btn-primary" onclick="cadastraPresenca()">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="selectInstructorModal" tabindex="-1" aria-labelledby="selectInstructorModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="selectInstructorModalLabel">Selecione seu instrutor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myHorariosModal" tabindex="-1" aria-labelledby="myHorariosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myHorariosModalLabel">Meus Horários de Aula</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="horariosContainer">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="aguardandoAprovacao" tabindex="-1" aria-labelledby="aguardandoAprovacaoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aguardandoAprovacaoLabel">Horários Aguardando Aprovação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="horariosApContainer">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="requerimentoProvaModal" tabindex="-1" aria-labelledby="requerimentoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="requerimentoProvaModallabel">Solicitar prova</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="solicitacaoProvaForm">
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição:</label>
+                            <input type="text" class="form-control" id="descricaoSolicitacaoProva" required>
+                        </div>
+                        <div class="mb-3">
+                            <div class="tipoAula">
+                                <label for="tipoAula" class="form-label">Tipo de Prova</label>
+                                <select class="form-select" id="tipoProva" required>
+                                    <option value="1">Teórica</option>
+                                    <option value="2">Prática</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btnSolicitarProva">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="solicitacoesModal" tabindex="-1" aria-labelledby="solicitacoesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="solicitacoesModalLabel">Minhas Solicitações de Presença</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="solicitacoesProvaModal" tabindex="-1" aria-labelledby="solicitacoesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="solicitacoesModalLabel">Minhas Solicitações de Prova</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="verPagamentosModal" tabindex="-1" aria-labelledby="verPagamentosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="solicitacoesModalLabel">Meus Pagamentos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Talvez interessante adicionar customização própria no css para esse modal -->
+    <div class="modal fade" id="provasModal" tabindex="-1" aria-labelledby="provasModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="provasModalLabel">Minhas provas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="provasModalBody">
+              <!-- Provas serão exibidas aqui -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <div class="modal fade" id="avaliar-autoescola-modal" tabindex="-1" aria-labelledby="avaliar-autoescola-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="avaliar-autoescola-modal-label">Avaliar Autoescola</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="avaliar-autoescola-form">
+                    <div class="mb-3">
+                      <label for="descricao" class="form-label">Descrição:</label>
+                      <input type="text" class="form-control" id="descricao" >
+                    </div>
+                    <div class="mb-3">
+                      <label for="avaliacao" class="form-label">Avalie:</label>
+                      <div class="rating">
+                        <input type="checkbox" id="star1" name="avaliacao" value="1">
+                        <label for="star1"></label>
+                        <input type="checkbox" id="star2" name="avaliacao" value="2">
+                        <label for="star2"></label>
+                        <input type="checkbox" id="star3" name="avaliacao" value="3">
+                        <label for="star3"></label>
+                        <input type="checkbox" id="star4" name="avaliacao" value="4">
+                        <label for="star4"></label>
+                        <input type="checkbox" id="star5" name="avaliacao" value="5">
+                        <label for="star5"></label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="avaliarBtn">Avaliar</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/alunoProfile.js"></script>
+    <script src="js/meusHorarios.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/progressoAluno.js"></script>
+    <script src="js/avaliacao.js"></script>
+</body>
+</html>

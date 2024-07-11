@@ -1,0 +1,13 @@
+.horario-container {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.horario-container .col {
+    flex: 1;
+}
+
+.horario-container button {
+    width: 100%;
+}

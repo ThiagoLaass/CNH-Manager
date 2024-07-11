@@ -1,0 +1,33 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+title: CNH Manager
+authors:
+  - family-names: Borges Laass
+    given-names: Thiago
+  - family-names: Amaral Figueiredo
+    given-names: Leticia
+  - family-names: Caldas Pacheco
+    given-names: Leandro 
+  - family-names: Matsuhara Ferraz
+    given-names: Ian 
+  - family-names: Maria de Araujo Cathalat
+    given-names: Isadora 
+  - family-names: Eduardo Marinho de Miranda Hermenegildo
+    given-names: Matheus
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Alonso Veloso
+    given-names: Eveline 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Norberta de Brito
+    given-names: Aline
+    keywords:
+    - Carteira de motorista
+    - CNH
+    - Autoescola
+    - Processos de Negócio 
+repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2024-1-ti2-3687100-cnh-manager.git
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2024-06-21

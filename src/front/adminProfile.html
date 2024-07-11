@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="img/logo12nobg.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <title>Profile - CNH Manager</title>
+</head>
+
+<body>
+    <header class="header text-center">
+        <div class="container">
+            <img src="img/logo12nobg.png" alt="CNH Manager" width="100">
+            <h1 id="pagina" class="">Perfil Do Admin</h1>
+            <button type="button" class="btn btn-dark" id="logoutBtn">Log out</button>
+        </div>
+        <div id="user-info" class=""></div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Lista de solicitações abertas</h5>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#listagemModal">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Cadastrar pagamento</h5>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#cadastroPagamentoModal">
+                                Cadastrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Lista de solicitações fechadas</h5>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#listagemFechadasModal">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Listar Solicitações de Prova</h5>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#solicitacoesDeProvaModal">Listar</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                    <div class="col-md-6 mb-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Indicadores</h5>
+                            <button type="button" class="btn btn-secondary" id="btnIndicadores">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <div class="card text-center">
+                      <div class="card-body">
+                          <h5 class="card-title">Lista de provas para avaliar</h5>
+                          <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                              data-bs-target="#listagemProvasModal">
+                              Ver
+                          </button>
+                      </div>
+                  </div>
+              </div>
+            </div>  
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CNH Manager. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modais -->
+    <div class="modal fade" id="listagemFechadasModal" tabindex="-1" aria-labelledby="listagemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="listagemModalLabel">Lista de solicitações fechadas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="solicitacoesFechadasList">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="solicitacoesDeProvaModal" tabindex="-1" aria-labelledby="solicitacoesDeProvaModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="solicitacoesDeProvaModalLabel">Solicitações de Prova</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group" id="solicitacoesde-prova-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="listagemModal" tabindex="-1" aria-labelledby="listagemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="listagemModalLabel">Lista de solicitações abertas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="solicitacoesList">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cadastroPagamentoModal" tabindex="-1" aria-labelledby="cadastroPagamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cadastroPagamentoModalLabel">Cadastro de Pagamento</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="cadastroPagamentoForm">
+                <div class="mb-3">
+                  <label for="tipoPagamento" class="form-label">Tipo de Pagamento:</label>
+                  <select class="form-select" id="tipoPagamento" required>
+                    <option value="0">Aula Pratica Adicional</option>
+                    <option value="1">Prova</option>
+                </select>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="cadastrarPagamento()">Cadastrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" tabindex="-1" id="provaModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Cadastro de Prova</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="provaForm">
+                <div class="form-group">
+                  <label for="dataProva">Data da Prova:</label>
+                  <input type="date" class="form-control" id="dataProva" name="dataProva">
+                </div>
+                <div class="form-group">
+                  <label for="horaProva">Horário da Prova:</label>
+                  <input type="time" class="form-control" id="horaProva" name="horaProva">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="btnSalvarProva">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="estatisticaModal" tabindex="-1" aria-labelledby="estatisticaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="estatisticaModalLabel">Estatística de Aprovação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="estatistica-text"></p>
+                    <p id="avaliacao-media-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<
+    <div class="modal fade" id="listagemProvasModal" tabindex="-1" aria-labelledby="listagemModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="listagemModalLabel">Lista de provas para avaliar</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <ul class="list-group" id="provasList">
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/adminProfile.js"></script>
+    <script src="js/logout.js"></script>
+    <script>
+        document.getElementById('btnIndicadores').addEventListener('click', function() {
+            window.location.href = 'indicadores.html';
+        });
+    </script>
+</body>
+
+</html>

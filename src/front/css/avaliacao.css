@@ -1,0 +1,25 @@
+.rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+ .rating input[type="checkbox"] {
+    display: none;
+  }
+
+ .rating label {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+  }
+
+ .rating label:before {
+    content: "\2605";
+    font-size: 24px;
+    color: #ccc;
+  }
+
+ .rating input[type="checkbox"]:checked + label:before {
+    color: #ffd700;
+  }

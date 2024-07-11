@@ -1,0 +1,155 @@
+body{
+  margin: 0;
+  font-family: 'Jost', sans-serif;
+}
+header {
+  background-color: #333;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 5vh;
+}
+.footer {
+	background-color: #343a40;
+	color: white;
+	padding: 20px 0;
+	text-align: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header-container a {
+  text-decoration: none;
+}
+
+.header-container h1 {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.5em;
+}
+
+#AcessarConta{
+  align-self: center;
+}
+.limiter{
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 80vh;
+	font-family: 'Jost', sans-serif;
+}
+.main{
+	width: 350px;
+	height: 500px;
+	background: #343a40;
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 5px 10px 30px #000;
+}
+#chk{
+	display: none;
+}
+.signup{
+	position: relative;
+	width:100%;
+	height: 100%;
+}
+label{
+	color: #fff;
+	font-size: 2.3em;
+	justify-content: center;
+	display: flex;
+	margin: 50px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+.message{
+  position: relative;
+}
+input{
+	width: 60%;
+	height: 10px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 12px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+select{
+  width: 40%;
+  height: 40px;
+  background: #e0dede;
+  justify-content: center;
+  font-size: 1em;
+	font-weight: bold;
+  text-align: center;
+  display: flex;
+  margin: 20px auto;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  appearance: none; /* remove a seta padrão do select */
+  -webkit-appearance: none; /* remove a seta padrão do select para Chrome e Safari */
+  -moz-appearance: none; /* remove a seta padrão do select para Firefox */
+}
+select:focus {
+  box-shadow: 0 0 5px #ccc;
+  border-color: #aaa;
+}
+button{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #573b8a;
+	font-size: 1em;
+	font-weight: bold;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+button:hover{
+	background: #6d44b8;
+}
+.login{
+	height: 460px;
+	background: #eee;
+	border-radius: 60% / 10%;
+	transform: translateY(-180px);
+	transition: .8s ease-in-out;
+}
+.login label{
+	color: #573b8a;
+	transform: scale(.6);
+}
+
+#chk:checked ~ .login{
+	transform: translateY(-500px);
+}
+#chk:checked ~ .login label{
+	transform: scale(1);	
+}
+#chk:checked ~ .signup label{
+	transform: scale(.6);
+}
+#message{
+  position: absolute;
+}

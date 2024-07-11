@@ -1,0 +1,18 @@
+.instrutor-card .card-title {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .instrutor-card .card-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .instrutor-card .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .instrutor-card .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }

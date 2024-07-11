@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <img src="img/logo12nobg.png" alt="CNH Manager" width="100">
+          <a href="index.html">
+            <h1>CNH Manager</h1>
+          </a>
+          <h1 id="AcessarConta"> --> Acessar Conta</h1>
+        </div>
+      </header>
+    <div class="limiter">
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form id="registerForm">
+                <label for="chk" aria-hidden="true">Cadastro</label>
+                <input id="newUsername" name="txt" placeholder="Username" required="">
+                <input id="newEmail" name="email" placeholder="Email" required="">
+                <input id="newPassword" name="pswd" type="password" placeholder="Senha" required="">
+                <select name="role" id="newRole" required>
+                    <option value="USER">ALUNO</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="INSTRUTOR">INSTRUTOR</option>
+                </select>
+                <button id="registerButton" type="submit">Cadastre</button>
+            </form>
+        </div>
+
+        <div class="login">
+            <form>
+                <label for="chk" aria-hidden="true">Login</label>
+                <input id="login" name="email" placeholder="Username" required="">
+                <input id="password" name="pswd" type="password" placeholder="Senha" required="">
+                
+                <button id="loginButton" type="button">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 CNH Manager. Todos os direitos reservados.</p>
+    </div>
+</footer>
+    
+
+    <script src="js/login.js"></script>
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>

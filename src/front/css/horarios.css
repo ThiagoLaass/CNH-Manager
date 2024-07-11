@@ -1,0 +1,58 @@
+body, html {
+
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+body {
+
+    background-color: #f8f9fa;
+
+}
+
+.header {
+
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+.main-content {
+
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.footer {
+
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+#teorica-select option {
+    
+    text-transform: capitalize;
+}
+
+.horario .instrutor {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .horario .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .horario .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
