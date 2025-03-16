@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.project.cnh_manager.models.Pagamento;
 import com.project.cnh_manager.models.User;
 import com.project.cnh_manager.repositories.UserRepository;
+import com.project.cnh_manager.services.exceptions.AuthorizationException;
 
 
 @Service
@@ -23,11 +24,11 @@ public class UserService {
     }
 
     public static User authenticated() {
-        try {
-            return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        } catch (Exception e) {
-            return null;
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user == null) {
+            throw new AuthorizationException("Acesso negado");
         }
+        return user;
     }
 
     public User findById(UUID id) {

@@ -1,7 +1,6 @@
 package com.project.cnh_manager.services;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -46,17 +45,12 @@ public class CargaHorariaConcluidaService {
 
     public boolean verificaHorasPraticas(User aluno){
         ArrayList<CargaHorariaConcluida> cargasHorarias = getCargasHorarias(aluno.getId());
-        List<Aula> aulas = aulaRepository.findAll();
-        for(Aula aula : aulas){
-            if (aula.getNome().equals("Prática")){
-                for (CargaHorariaConcluida cargaHorariaConcluida : cargasHorarias) {
-                    if(Objects.equals(cargaHorariaConcluida.getAula().getId(), aula.getId())){
-                        return cargaHorariaConcluida.getCargaHoraria() < aula.getCargaHoraria();
-                    }
-                } 
+        Aula aula = aulaRepository.findByNome("Prática");
+        for (CargaHorariaConcluida cargaHorariaConcluida : cargasHorarias) {
+            if(Objects.equals(cargaHorariaConcluida.getAula().getId(), aula.getId())){
+                return cargaHorariaConcluida.getCargaHoraria() < aula.getCargaHoraria();
             }
         }
-
         return false;
     }
 }

@@ -28,15 +28,4 @@ public class CargaHorariaConcluidaController {
         ArrayList<CargaHorariaConcluida> cargas = service.getCargasHorarias(userId);
         return new ResponseEntity<>(cargas, HttpStatus.OK);
     }
-
-
-    // @GetMapping("/{cargaHorariaId}")
-    // public ResponseEntity<?> getCargaHorariaConcluidaById(@PathVariable UUID id) {
-    //     Optional<CargaHorariaConcluida> cargaHorariaConcluida = this.repository.findById(id);
-    //     if (cargaHorariaConcluida.isPresent()) {
-    //         return ResponseEntity.ok(cargaHorariaConcluida.get());
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
 }

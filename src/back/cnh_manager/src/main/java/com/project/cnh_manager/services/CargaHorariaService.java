@@ -3,10 +3,12 @@ package com.project.cnh_manager.services;
 import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.cnh_manager.exception.CustomServiceException;
 import com.project.cnh_manager.models.Aula;
 import com.project.cnh_manager.models.CargaHorariaConcluida;
 import com.project.cnh_manager.models.HorarioAulaPratica;
@@ -32,16 +34,16 @@ public class CargaHorariaService {
         List<Aula> aulas = aulaRepository.findAll();
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+                .orElseThrow(() -> new CustomServiceException("Usuário não encontrado na inicialização da carga horária."));
 
-        for (Aula aula : aulas) {
-            CargaHorariaConcluida cargaHoraria = new CargaHorariaConcluida(0, user, aula);
-            cargaHoraria.setCargaHoraria(0);
-            cargaHoraria.setUser(user);
-            cargaHoraria.setAula(aula);
-            cargaHoraria.setCargaHorariaId(null);
-            cargaHorariaRepository.save(cargaHoraria);
-        }
+        List<CargaHorariaConcluida> cargas = aulas.stream()
+            .map(aula -> {
+                CargaHorariaConcluida carga = new CargaHorariaConcluida(0, user, aula);
+                carga.setCargaHoraria(0);
+                return carga;
+            })
+            .collect(Collectors.toList());
+        cargaHorariaRepository.saveAll(cargas);
     }
 
     public List<CargaHorariaConcluida> findCargaHorariaByUserId(User user) {
