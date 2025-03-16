@@ -2,6 +2,7 @@ package com.project.cnh_manager.services;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,11 +47,8 @@ public class PagamentoService {
     public Pagamento createPagamentoeTipoPagamento(User user) {
         Pagamento pagamento = new Pagamento();
 
-        TipoPagamento tipoPagamento = tipoPagamentoRepository.findById(0L).orElseThrow(); /** de acordo com o que estiver no BD, 
-        se não houver nenhum TipoPagamento cadastrado, a request ira retornar um erro 403, 
-        assim que implementado os scripts de automatização, isso será resolvido.
-        Caso queira testar a funcionalidade, crie um a mão no bd com um nome condizente
-        */ 
+        TipoPagamento tipoPagamento = tipoPagamentoRepository.findById(0L) == null 
+            ?  new TipoPagamento(0L, "novo_pagamento", 0.0, new ArrayList<>()) : tipoPagamentoRepository.findById(0L).get();
 
         pagamento.setId(UUID.randomUUID());
         pagamento.setUser(user);
@@ -68,7 +66,7 @@ public class PagamentoService {
         return pagamentoRepository.save(p);
     }
 
-    public Pagamento denyPagamento(HorarioAulaPratica horario){
+    public Pagamento denyPagamento(HorarioAulaPratica horario) {
         Pagamento p = horario.getPagamento();
         p.setStatusPagamento(false);
         return pagamentoRepository.save(p);

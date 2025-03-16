@@ -13,7 +13,6 @@ import com.project.cnh_manager.models.ProvaSolicitacao;
 import com.project.cnh_manager.models.User;
 import com.project.cnh_manager.repositories.ProvaRepository;
 import com.project.cnh_manager.repositories.ProvaSolicitacaoRepository;
-import com.project.cnh_manager.repositories.UserRepository;
 
 @Service
 public class ProvaService {
@@ -23,10 +22,6 @@ public class ProvaService {
 
     @Autowired
     private ProvaSolicitacaoRepository provaSolicitacaoRepository;
-
-
-    @Autowired
-    private UserRepository userRepository;
 
     public Prova atualizaProva(UUID id, Prova novaProva) {
         Prova provaAtualizada = provaRepository.findById(id)

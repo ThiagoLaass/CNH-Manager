@@ -51,12 +51,7 @@ public class SolicitacaoService {
     @Transactional
     public Solicitacao create(Solicitacao solicitacao) {
         User user = UserService.authenticated();
-        if (Objects.isNull(user)) {
-            throw new AuthorizationException("Acesso negado!");
-        }
-
-        // String aulaId = solicitacao.getAulaId();
-        // System.out.println(aulaId);
+        
         Aula aula = aulaRepository.findById(Long.valueOf(solicitacao.getAulaId()))
                 .orElseThrow(() -> new RuntimeException("Aula não encontrada com o ID fornecido"));
 

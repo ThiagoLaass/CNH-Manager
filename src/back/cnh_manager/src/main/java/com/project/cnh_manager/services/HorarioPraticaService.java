@@ -87,11 +87,15 @@ public class HorarioPraticaService {
 
     public HorarioAulaPratica setAdicional(HorarioAulaPratica horario, UUID horarioId, User user) {
         HorarioAulaPratica horarioAtualizado = horarioAulaPraticaRepository.findById(horarioId).orElseThrow();
-        horarioAtualizado.setAluno(user);
-        horarioAtualizado.setStatusAberto(false);
-        horarioAtualizado.setStatusAprovado(false);
-        horarioAtualizado.setAulaAdicional(true);
-        horarioAtualizado.setPagamento(pagamentoService.createPagamentoeTipoPagamento(user));
+        HorarioAulaPratica.builder()
+                .instrutor(horario.getInstrutor())
+                .aluno(horario.getAluno())
+                .statusAberto(horario.isStatusAberto())
+                .statusAprovado(horario.isStatusAprovado())
+                .aguardandoAprovacao(horario.isAguardandoAprovacao())
+                .aulaAdicional(true)
+                .pagamento(pagamentoService.createPagamentoeTipoPagamento(user))
+                .build();
         return horarioAulaPraticaRepository.save(horarioAtualizado);
     }
 

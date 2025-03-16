@@ -11,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.cnh_manager.models.Avaliacao;
-import com.project.cnh_manager.models.Prova;
 import com.project.cnh_manager.models.User;
 import com.project.cnh_manager.models.UserRole;
 import com.project.cnh_manager.repositories.AvaliacaoRepository;
-import com.project.cnh_manager.repositories.ProvaRepository;
 import com.project.cnh_manager.repositories.UserRepository;
 import com.project.cnh_manager.services.exceptions.AuthorizationException;
 
@@ -32,9 +30,6 @@ public class PerformanceIndicatorService {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private ProvaRepository provaRepository;
 
     // Métodos de avaliação
     public List<Avaliacao> getAllAvaliacoes() {
