@@ -1,7 +1,6 @@
 package com.project.cnh_manager.services;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,6 @@ import com.project.cnh_manager.models.Solicitacao;
 import com.project.cnh_manager.models.User;
 import com.project.cnh_manager.repositories.AulaRepository;
 import com.project.cnh_manager.repositories.SolicitacaoRepository;
-import com.project.cnh_manager.services.exceptions.AuthorizationException;
 
 import jakarta.transaction.Transactional;
 
@@ -67,20 +65,15 @@ public class SolicitacaoService {
     }
 
     public Solicitacao atualizarSolicitacao(UUID id, Solicitacao solicitacaoAtualizada) {
-        // Verifica se a solicitação com o ID fornecido existe no banco de dados
         Solicitacao solicitacao = solicitacaoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada com o ID: " + id));
+            .orElseThrow(() -> new RuntimeException("Solicitação não encontrada com o ID: " + id));
 
         if (solicitacaoAtualizada.isStatusAprovada()) {
             int horas = solicitacao.getHorasSolicitadas();
             cargaHorariaService.setHours(horas, solicitacao.getUser(), solicitacao.getAula());
         }
-
-        // Atualiza os atributos da solicitação com base nos dados fornecidos
         solicitacao.setStatusAberta(solicitacaoAtualizada.isStatusAberta());
         solicitacao.setStatusAprovada(solicitacaoAtualizada.isStatusAprovada());
-        // Continue atualizando outros campos conforme necessário
-
         return solicitacaoRepository.save(solicitacao);
     }
 }

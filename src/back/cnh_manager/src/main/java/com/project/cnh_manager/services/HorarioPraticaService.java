@@ -97,36 +97,31 @@ public class HorarioPraticaService {
                 .pagamento(pagamentoService.createPagamentoeTipoPagamento(user))
                 .build();
         return horarioAulaPraticaRepository.save(horarioAtualizado);
-    }
+        }
 
-    public HorarioAulaPratica approveOrDeny(UUID horarioId, HorarioAulaPratica horarioAtualizado) {
-        HorarioAulaPratica horario = horarioAulaPraticaRepository.findById(horarioId).orElseThrow();
-        User aluno =  horario.getAluno();
-        if(horarioAtualizado.isStatusAprovado()){
-        horario.setStatusAprovado(horarioAtualizado.isStatusAprovado());
-        horario.setStatusAberto(true);
-        horario.setAguardandoAprovacao(false);
-        horario.setAluno(null);
-        cargaHorariaService.calculateHours(horario, aluno);
-        pagamentoService.approvePagamento(horario);
-        horario.setPagamento(null);
+        public HorarioAulaPratica approveOrDeny(UUID horarioId, HorarioAulaPratica horarioUpdate) {
+            HorarioAulaPratica horario = horarioAulaPraticaRepository.findById(horarioId)
+                .orElseThrow(() -> new IllegalArgumentException("Horario não encontrado"));
+            User aluno = horario.getAluno();
 
-        int aulasAdicionais = aluno.getQuantAulasAdicionais();
-        aulasAdicionais += 1;
-        aluno.setQuantAulasAdicionais(aulasAdicionais);
-        userRepository.save(aluno);
-        return horarioAulaPraticaRepository.save(horario);
-    }
-        else {
-            horario.setStatusAprovado(false);
             horario.setStatusAberto(true);
             horario.setAguardandoAprovacao(false);
             horario.setAluno(null);
-            pagamentoService.denyPagamento(horario);
             horario.setPagamento(null);
+
+            if (horarioUpdate.isStatusAprovado()) {
+                horario.setStatusAprovado(true);
+                cargaHorariaService.calculateHours(horario, aluno);
+                pagamentoService.approvePagamento(horario);
+
+                aluno.setQuantAulasAdicionais(aluno.getQuantAulasAdicionais() + 1);
+                userRepository.save(aluno);
+            } else {
+                horario.setStatusAprovado(false);
+                pagamentoService.denyPagamento(horario);
+            }
             return horarioAulaPraticaRepository.save(horario);
         }
-    }
 
     public List<HorarioAulaPratica> findAllAwaitingApprovalByInstrutorId(UUID id) {
         return horarioAulaPraticaRepository.findAll().stream()
